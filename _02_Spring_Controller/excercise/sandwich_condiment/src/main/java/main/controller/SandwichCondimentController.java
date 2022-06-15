@@ -19,7 +19,7 @@ public class SandwichCondimentController {
     }
 
     @PostMapping("/home")
-    public String greeting(@RequestParam(name = "listCondiment",defaultValue = "Nothing") String[] listCondiment, Model model) {
+    public String greeting(@RequestParam(name = "listCondiment", defaultValue = "Nothing") String[] listCondiment, Model model) {
         model.addAttribute("listCondiment", dictionary.search(listCondiment));
         return "result";
     }

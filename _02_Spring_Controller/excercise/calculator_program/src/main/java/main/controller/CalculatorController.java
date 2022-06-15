@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class CalculatorController  {
+public class CalculatorController {
     @Autowired
     private ICalculatorService dictionary;
 
@@ -20,9 +20,9 @@ public class CalculatorController  {
 
     @PostMapping("/home")
     public String greeting(String firstInput, String secondInput, String calculation, Model model) {
-        model.addAttribute("firstInput",firstInput);
-        model.addAttribute("secondInput",secondInput);
-        model.addAttribute("result",dictionary.calculation(firstInput,secondInput,calculation));
+        model.addAttribute("firstInput", firstInput);
+        model.addAttribute("secondInput", secondInput);
+        model.addAttribute("result", dictionary.calculation(firstInput, secondInput, calculation));
         return "home";
     }
 }
