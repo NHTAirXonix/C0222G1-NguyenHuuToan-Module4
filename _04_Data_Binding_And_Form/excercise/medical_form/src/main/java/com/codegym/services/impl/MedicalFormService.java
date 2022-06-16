@@ -22,4 +22,24 @@ public class MedicalFormService implements MedicalFormServices {
     public void save(MedicalForm medicalForm) {
         medicalFormRepository.save(medicalForm);
     }
+
+    @Override
+    public String[] getYear() {
+        return medicalFormRepository.getYear();
+    }
+
+    @Override
+    public String[] getGender() {
+        return medicalFormRepository.getGender();
+    }
+
+    @Override
+    public String[] getCountry() {
+        return medicalFormRepository.getCountry();
+    }
+
+    @Override
+    public String[] getVehicle() {
+        return medicalFormRepository.getVehicle();
+    }
 }

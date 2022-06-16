@@ -24,7 +24,8 @@
         <table width="100%">
             <tr>
                 <th colspan="6">
-                    <p><b>This is a important, your information will help health authorities contact to infectious disease prevention</b></p>
+                    <p><b>This is a important, your information will help health authorities contact to infectious
+                        disease prevention</b></p>
                 </th>
             </tr>
             <tr>
@@ -35,66 +36,76 @@
             <tr>
                 <td colspan="6">
                     Your Name
-                    <input type="text" style="width: 100%">
+                    <form:input cssStyle="width: 100%" path="name"></form:input>
                 </td>
             </tr>
-
-<%--            <tr>--%>
-<%--                <td>--%>
-<%--                    <p>Languages</p>--%>
-<%--                </td>--%>
-<%--                <td>--%>
-<%--                    <form:select path="languages">--%>
-<%--                        <form:option value="English">English</form:option>--%>
-<%--                        <form:option value="Vietnamese">Vietnamese</form:option>--%>
-<%--                        <form:option value="Japanese">Japanese</form:option>--%>
-<%--                        <form:option value="Chinese">Chinese</form:option>--%>
-<%--                    </form:select>--%>
-<%--                </td>--%>
-<%--            </tr>--%>
-<%--            <tr>--%>
-<%--                <td>--%>
-<%--                    <p>Page Size</p>--%>
-<%--                </td>--%>
-<%--                <td>--%>
-<%--                    Show--%>
-<%--                    <form:select path="pageSize">--%>
-<%--                        <form:option value="5">5</form:option>--%>
-<%--                        <form:option value="10">10</form:option>--%>
-<%--                        <form:option value="15">15</form:option>--%>
-<%--                        <form:option value="25">25</form:option>--%>
-<%--                        <form:option value="50">50</form:option>--%>
-<%--                        <form:option value="100">100</form:option>--%>
-<%--                    </form:select>--%>
-<%--                    emails per page--%>
-<%--                </td>--%>
-<%--            </tr>--%>
-<%--            <tr>--%>
-<%--                <td>--%>
-<%--                    <p>Spams filter</p>--%>
-<%--                </td>--%>
-<%--                <td>--%>
-<%--                    <form:checkbox value="" path="spamFilter"/> Enable spams filer--%>
-<%--                </td>--%>
-<%--            </tr>--%>
-<%--            <tr>--%>
-<%--                <td>--%>
-<%--                    <p>Signature:</p>--%>
-<%--                </td>--%>
-<%--                <td>--%>
-<%--                    <form:textarea path="signature" cols="30" rows="10"></form:textarea>--%>
-<%--                </td>--%>
-<%--            </tr>--%>
-<%--            <tr>--%>
-<%--                <th colspan="2">--%>
-<%--                    <form:button type="submit">Submit</form:button>--%>
-<%--                </th>--%>
-<%--            </tr>--%>
             <tr>
-                <th colspan="2">
+                <td colspan="2">
+                    Year of Birthday
+                    <form:select cssStyle="width: 100%" colspan="2" path="birthYear" items="${listYear}">
+                        <form:option value="${listYear}">value="${listYear}</form:option>
+                    </form:select>
+                </td>
+                <td colspan="2">
+                    Gender
+                    <form:select cssStyle="width: 100%" colspan="2" path="gender" items="${listGender}">
+                        <form:option value="${listYear}">value="${listYear}</form:option>
+                    </form:select>
+                </td>
+                <td colspan="2">
+                    Country
+                    <form:select cssStyle="width: 100%" colspan="2" path="country" items="${listCountry}">
+                        <form:option value="${listYear}">value="${listYear}</form:option>
+                    </form:select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    Your ID Card Number
+                    <form:input cssStyle="width: 100%" path="idCardNumber"></form:input>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    Choose your vehicle:
+                    <form:radiobuttons items="${listVehicle}" path="verhice" required="required"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    Vehicle Number
+                    <form:input cssStyle="width: 100%" path="verhiceNumber"></form:input>
+                </td>
+                <td colspan="3">
+                    Vehicle Slot Number
+                    <form:input cssStyle="width: 100%" path="verhiceNumberSlot"></form:input>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    Date Start:
+                    <form:input type="date" cssStyle="width: 100%" path="dayStart"></form:input>
+                </td>
+                <td colspan="3">
+                    Date End:
+                    <form:input type="date" cssStyle="width: 100%" path="dayEnd"></form:input>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    City visited:
+                    <form:input type="text" cssStyle="width: 100%" path="city"></form:input>
+                </td>
+            </tr>
+            <tr>
+                <th colspan="3">
+                    <form:button type="submit">SUBMIT</form:button>
+                </th>
+                <th colspan="3">
                     <a href="/list">SHOW LIST</a>
                 </th>
             </tr>
+
         </table>
     </form:form>
 </div>

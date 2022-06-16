@@ -27,7 +27,10 @@ public class MedicalFormController {
 
     @GetMapping(value = "/create")
     public String getFormCreate(Model model) {
-
+        model.addAttribute("listYear",medicalFormServices.getYear());
+        model.addAttribute("listGender",medicalFormServices.getGender());
+        model.addAttribute("listCountry",medicalFormServices.getCountry());
+        model.addAttribute("listVehicle",medicalFormServices.getVehicle());
         model.addAttribute("medicalForm", new MedicalForm());
         return "create";
     }
@@ -48,7 +51,7 @@ public class MedicalFormController {
                 medicalForm.getCity()
         );
         medicalFormServices.save(medicalForm1);
-        redirectAttributes.addFlashAttribute("msg","Create Success");
+        redirectAttributes.addFlashAttribute("msg", "Create Success");
         return "redirect:/list";
     }
 }
