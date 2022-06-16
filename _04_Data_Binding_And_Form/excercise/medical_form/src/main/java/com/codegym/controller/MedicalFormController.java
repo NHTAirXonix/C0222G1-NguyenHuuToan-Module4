@@ -27,10 +27,10 @@ public class MedicalFormController {
 
     @GetMapping(value = "/create")
     public String getFormCreate(Model model) {
-        model.addAttribute("listYear",medicalFormServices.getYear());
-        model.addAttribute("listGender",medicalFormServices.getGender());
-        model.addAttribute("listCountry",medicalFormServices.getCountry());
-        model.addAttribute("listVehicle",medicalFormServices.getVehicle());
+        model.addAttribute("listYear", medicalFormServices.getYear());
+        model.addAttribute("listGender", medicalFormServices.getGender());
+        model.addAttribute("listCountry", medicalFormServices.getCountry());
+        model.addAttribute("listVehicle", medicalFormServices.getVehicle());
         model.addAttribute("medicalForm", new MedicalForm());
         return "create";
     }

@@ -34,9 +34,9 @@ public class MailController {
 
     @PostMapping(value = "/create")
     public String createMailSetting(@ModelAttribute("mailSettingsList") MailSettings mailSettings, RedirectAttributes redirectAttributes) {
-        MailSettings mailSettings1 = new MailSettings(mailSettings.getLanguages(),mailSettings.getPageSize(),mailSettings.getSpamFilter(),mailSettings.getSignature());
+        MailSettings mailSettings1 = new MailSettings(mailSettings.getLanguages(), mailSettings.getPageSize(), mailSettings.getSpamFilter(), mailSettings.getSignature());
         iMailServices.save(mailSettings1);
-        redirectAttributes.addFlashAttribute("msg","Create Success");
+        redirectAttributes.addFlashAttribute("msg", "Create Success");
         return "redirect:/list";
     }
 }
