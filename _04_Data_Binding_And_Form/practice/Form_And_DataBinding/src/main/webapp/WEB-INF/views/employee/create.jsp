@@ -13,7 +13,7 @@
             <td><form:input path="id"/></td>
         </tr>
         <tr>
-            <td><form:label path="name">Employee's name: </form:label></td>
+            <td><form:label path=" ">Employee's name: </form:label></td>
             <td><form:input path="name"/></td>
         </tr>
         <tr>
