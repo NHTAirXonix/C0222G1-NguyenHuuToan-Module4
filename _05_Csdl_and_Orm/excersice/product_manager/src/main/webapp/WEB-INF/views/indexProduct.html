@@ -43,16 +43,10 @@
     <tbody>
     <tr th:each="row,rowStat : ${productList}">
         <td th:text="${row.id}"></td>
-
-        <td th:text="${row.getDetail()}"></td>
-
-        <td th:text="${row.getManufacturer()}"></td>
-
-
         <td th:text="${row.getName()}"></td>
-
+        <td th:text="${row.getDetail()}"></td>
         <td th:text="${row.getPrice()}"></td>
-
+        <td th:text="${row.getManufacturer()}"></td>
         <td><a th:href="@{/edit/{id}(id=${row.getId()})}">Edit</a></td>
         <td><a th:href="@{/view/{id}(id=${row.getId()})}">view</a></td>
         <td><a th:href="@{/delete/{id}(id=${row.getId()})}">delete</a></td>
