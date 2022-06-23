@@ -4,21 +4,15 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
-<h3>BLOG LIST</h3>
+<body style="font-family: Arial">
+<h2 style="text-align: center; background-image: linear-gradient(yellow,orange)">BLOG LIST</h2>
 <p>
-    <a th:href="@{/create}">
-        Add New Product
-    </a>
-</p>
-<p>
-    <a th:href="@{/list}">
-        Back to product list
-    </a>
+    <span><button><a style="text-decoration: none" th:href="@{/create}">Add New Product</a></button></span>
+    <span><button><a style="text-decoration: none" th:href="@{/list}">Back to product list</a></button></span>
 </p>
 <form th:action="@{/search}" th:object="${blog}" method="get">
     <input placeholder="Enter the blog's name" type="text"
-           th:field="*{title}" >
+           th:field="*{title}">
     <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
 </form>
 <div class="notify">
@@ -53,13 +47,13 @@
 <br>
 <div style="text-align: center">
     <span>
-        <a th:if = "${blogList.hasPrevious()}" th:href="@{/list(page = ${blogList.number - 1})}">Previous</a>
+        <a th:if="${blogList.hasPrevious()}" th:href="@{/list(page = ${blogList.number - 1})}">Previous</a>
     </span>
     <span th:each="pageNo: ${#numbers.sequence(0,blogList.totalPages - 1)}">
         <a th:href="@{/list(page = ${pageNo})}" th:text="${pageNo}"></a>
     </span>
     <span>
-        <a th:if = "${blogList.hasNext()}" th:href="@{/list(page = ${blogList.number +1})}">Next</a>
+        <a th:if="${blogList.hasNext()}" th:href="@{/list(page = ${blogList.number +1})}">Next</a>
     </span>
 </div>
 </body>

@@ -67,4 +67,6 @@ public class Blog {
     public void setCategory(Category category) {
         this.category = category;
     }
+
+
 }
