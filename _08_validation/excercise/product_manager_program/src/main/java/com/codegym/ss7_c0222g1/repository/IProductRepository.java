@@ -1,6 +1,8 @@
 package com.codegym.ss7_c0222g1.repository;
 
 import com.codegym.ss7_c0222g1.model.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -13,13 +15,12 @@ import java.util.List;
 public interface IProductRepository extends JpaRepository<Product,Integer> {
 
     @Query(value = "select * from product where product_status = '' ",nativeQuery = true)
-    List<Product> findAll();
-
+    Page<Product> findAll(Pageable pageable);
 
     @Modifying
     @Query(value = "update  product set product_status = '1' where product_id = :id",nativeQuery = true)
     void deleteById(@Param("id") String id);
 
     @Query(value = "select * from product where product_name  like %:name% ",nativeQuery = true)
-    List<Product> searchByName(@Param("name") String name);
+    Page<Product> searchByName(@Param("name") String name, Pageable pageable);
 }
