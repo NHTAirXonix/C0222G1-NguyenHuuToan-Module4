@@ -81,9 +81,9 @@ public class BlogController {
     }
 
     @GetMapping("/search")
-    public String search(@RequestParam(name = "page", defaultValue = "0") int page,Blog blog, Model model) {
+    public String search(@RequestParam(name = "page", defaultValue = "0") int page, Blog blog, Model model) {
         Sort sort = Sort.by("create_day").ascending().and(Sort.by("blog_title"));
-        Page<Blog> blogList = iBlogService.findByTitleOfBlog(blog.getTitle(),PageRequest.of(page, 2, sort));
+        Page<Blog> blogList = iBlogService.findByTitleOfBlog(blog.getTitle(), PageRequest.of(page, 2, sort));
         model.addAttribute("blog", new Blog());
         model.addAttribute("blogList", blogList);
         return "/listBlog";
