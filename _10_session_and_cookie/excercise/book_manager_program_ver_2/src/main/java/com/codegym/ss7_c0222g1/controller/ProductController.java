@@ -44,14 +44,17 @@ public class ProductController {
         }
         if (action.equals("increase")) {
             cart.addProduct(productOptional.get());
+            cart.countItemQuantity();
             return "redirect:/shopping-cart";
         }
         if (action.equals("decrease")) {
             cart.removeProduct(productOptional.get());
+            cart.countItemQuantity();
             return "redirect:/shopping-cart";
         }
         if (action.equals("delete")) {
             cart.deleteNowProduct(productOptional.get());
+            cart.countItemQuantity();
             return "redirect:/shopping-cart";
         }
         cart.addProduct(productOptional.get());

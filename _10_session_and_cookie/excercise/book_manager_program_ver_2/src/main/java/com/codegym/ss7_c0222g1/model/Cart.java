@@ -49,22 +49,19 @@ public class Cart {
 
     //giam san pham
     public void removeProduct(com.codegym.ss7_c0222g1.model.Product product) {
-        if (!checkItemInCart(product)) {
-            products.put(product, 1);
+        Map.Entry<Product, Integer> itemEntry = selectItemInCart(product);
+        if (itemEntry.getValue() == 1){
+            products.remove(itemEntry.getKey());
         } else {
-            Map.Entry<com.codegym.ss7_c0222g1.model.Product, Integer> itemEntry = selectItemInCart(product);
             Integer newQuantity = itemEntry.getValue() - 1;
-            products.replace(itemEntry.getKey(), newQuantity);
+            products.replace(itemEntry.getKey(),newQuantity);
         }
     }
+
     //xoa san pham
-    public void deleteNowProduct(com.codegym.ss7_c0222g1.model.Product product) {
-        if (!checkItemInCart(product)) {
-            products.put(product, 1);
-        } else {
-            Map.Entry<com.codegym.ss7_c0222g1.model.Product, Integer> itemEntry = selectItemInCart(product);
-            products.replace(itemEntry.getKey(), 0);
-        }
+    public void deleteNowProduct(Product product) {
+        Map.Entry<Product, Integer> itemEntry = selectItemInCart(product);
+        products.remove(itemEntry.getKey());
     }
 
     public Integer countProductQuantity() {
@@ -79,6 +76,10 @@ public class Cart {
         return products.size();
     }
 
+    public void clearCart(){
+        products.clear();
+    }
+
     public Float countTotalPayment() {
         float payment = 0;
         for (Map.Entry<com.codegym.ss7_c0222g1.model.Product, Integer> entry : products.entrySet()) {
@@ -86,16 +87,4 @@ public class Cart {
         }
         return payment;
     }
-
-    //xoa san pham trong danh sach
-    public void deleteProduct() {
-        for (Map.Entry<com.codegym.ss7_c0222g1.model.Product, Integer> entry : products.entrySet()) {
-            if (entry.getValue() == 0) {
-                products.remove(entry.getKey());
-                countItemQuantity();
-            }
-        }
-
-    }
-
 }

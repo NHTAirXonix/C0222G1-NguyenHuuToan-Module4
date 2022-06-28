@@ -27,13 +27,17 @@
             <td><img th:src="@{${product.getKey().description}}" style="height: 50px;width: 50px;"></td>
             <td th:text="${product.getKey().name}"></td>
             <td><span th:text="${product.getValue()}"></span></td>
-            <td><a class="btn btn-primary" th:href="@{/add/__${product.getKey().id}__(action='increase')}" th:text="${'+'}"></a></td>
-            <td><a class="btn btn-primary" th:href="@{/add/__${product.getKey().id}__(action='decrease')}" th:text="${'-'}"></a></td>
-            <td><a class="btn btn-primary" th:href="@{/add/__${product.getKey().id}__(action='delete')}" th:text="${'X'}"></a></td>
+            <td><a class="btn btn-primary" th:href="@{/add/__${product.getKey().id}__(action='increase')}"
+                   th:text="${'+'}"></a></td>
+            <td><a class="btn btn-primary" th:href="@{/add/__${product.getKey().id}__(action='decrease')}"
+                   th:text="${'-'}"></a></td>
+            <td><a class="btn btn-primary" th:href="@{/add/__${product.getKey().id}__(action='delete')}"
+                   th:text="${'X'}"></a></td>
             <td th:text="${product.getKey().price}"></td>
         </tr>
         <tr>
             <td>Total</td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
