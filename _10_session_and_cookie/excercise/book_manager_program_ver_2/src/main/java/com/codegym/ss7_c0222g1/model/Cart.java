@@ -47,18 +47,16 @@ public class Cart {
         }
     }
 
-    //giam san pham
     public void removeProduct(com.codegym.ss7_c0222g1.model.Product product) {
         Map.Entry<Product, Integer> itemEntry = selectItemInCart(product);
-        if (itemEntry.getValue() == 1){
+        if (itemEntry.getValue() == 1) {
             products.remove(itemEntry.getKey());
         } else {
             Integer newQuantity = itemEntry.getValue() - 1;
-            products.replace(itemEntry.getKey(),newQuantity);
+            products.replace(itemEntry.getKey(), newQuantity);
         }
     }
 
-    //xoa san pham
     public void deleteNowProduct(Product product) {
         Map.Entry<Product, Integer> itemEntry = selectItemInCart(product);
         products.remove(itemEntry.getKey());
@@ -76,7 +74,7 @@ public class Cart {
         return products.size();
     }
 
-    public void clearCart(){
+    public void clearCart() {
         products.clear();
     }
 

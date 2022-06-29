@@ -11,8 +11,8 @@
 <a style="margin: 10px;" class="btn btn-primary" href="/shop">BACK TO LIST PRODUCT</a>
 
 <form th:action="@{/shop}" th:object="${cart}" method="post">
-    <h3>Total Items: <span th:text="${cart.countItemQuantity()}"></span></h3>
-    <h3>Total Products: <span th:text="${cart.countProductQuantity()}"></span></h3>
+    <h4>Total Items: <span th:text="${cart.countItemQuantity()}"></span></h4>
+    <h4>Total Products: <span th:text="${cart.countProductQuantity()}"></span></h4>
     <table class="table text-center table-striped table-hover bg-white w-100 border-0">
         <tr>
             <th>Product Image</th>
