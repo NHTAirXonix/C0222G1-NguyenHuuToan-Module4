@@ -12,7 +12,8 @@
 
 <form class="form-inline" action="/give-back" style="margin: 10px">
     <input class="form-control mr-sm-2" name="code" type="text">
-    <input class="btn btn-outline-success my-2 my-sm-0" style="background-color: dodgerblue; color: white" type="submit" value="give back book">
+    <input class="btn btn-outline-success my-2 my-sm-0" style="background-color: dodgerblue; color: white" type="submit"
+           value="give back book">
 </form>
 
 <table class="table text-center table-striped table-hover bg-white w-100 border-0">
@@ -31,8 +32,10 @@
         <td th:text="${item.publicationDate}"></td>
         <td th:text="${item.quantity}"></td>
         <td>
-            <a  th:href="@{/borrow/__${item.id}__}">
-                <button class="btn btn-outline-success my-2 my-sm-0" style="background-color: #377d10; color: white">borrow</button>
+            <a th:href="@{/borrow/__${item.id}__}">
+                <button class="btn btn-outline-success my-2 my-sm-0" style="background-color: #377d10; color: white">
+                    borrow
+                </button>
             </a>
         </td>
     </tr>
