@@ -57,8 +57,9 @@ public class NewBlogController {
         return new ResponseEntity<>(blog, HttpStatus.OK);
     }
 
-//    @PostMapping
-//    public ResponseEntity<?> saveBlog(@RequestBody Blog blog) {
-//        return new ResponseEntity<>(iBlogService.save(blog), HttpStatus.CREATED);
-//    }
+    @GetMapping("/search/{titleSearch}")
+    public ResponseEntity<?> index(@PathVariable(name = "titleSearch") String titleSearch) {
+        List<Blog> blogList = iBlogService.findAllTitle(titleSearch);
+        return new ResponseEntity<>(blogList, HttpStatus.OK);
+    }
 }

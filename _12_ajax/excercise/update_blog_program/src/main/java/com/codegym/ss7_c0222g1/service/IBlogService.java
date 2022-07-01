@@ -18,6 +18,10 @@ public interface IBlogService {
 
     void remove(int id);
 
+    List<Blog> findAllTitle(String titleSearch);
+
+    List<Blog> findAll();
+
     Page<Blog> findByTitleOfBlog(String title, Pageable pageable);
 
     Page<Blog> findByIdCategory(Integer id, Pageable pageable);
