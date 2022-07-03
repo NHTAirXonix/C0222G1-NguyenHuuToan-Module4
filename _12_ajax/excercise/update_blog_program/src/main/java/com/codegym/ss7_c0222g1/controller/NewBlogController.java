@@ -30,8 +30,8 @@ public class NewBlogController {
     public ResponseEntity<?> index(@RequestParam(name = "category", defaultValue = "") String category, @RequestParam(name = "page", defaultValue = "0") int page) {
         Sort sort = Sort.by("create_day").ascending().and(Sort.by("blog_title"));
         Page<Blog> blogList;
-        if(!category.equals("")){
-            blogList = iBlogService.findByIdCategory(iCategoryService.getId(category),PageRequest.of(page, 2, sort));
+        if (!category.equals("")) {
+            blogList = iBlogService.findByIdCategory(iCategoryService.getId(category), PageRequest.of(page, 2, sort));
         } else {
             blogList = iBlogService.findAll(PageRequest.of(page, 2, sort));
         }
@@ -51,7 +51,7 @@ public class NewBlogController {
     @GetMapping("/views/{id}")
     public ResponseEntity<?> view(@PathVariable Integer id) {
         Blog blog = iBlogService.findById(id);
-        if (blog==null){
+        if (blog == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(blog, HttpStatus.OK);

@@ -21,8 +21,7 @@ public class Blog {
     public Blog() {
     }
 
-    public Blog( String createDay, String title, String content) {
-        this.idBlog = idBlog;
+    public Blog(String createDay, String title, String content) {
         this.createDay = createDay;
         this.title = title;
         this.content = content;

@@ -8,12 +8,16 @@ public class Blog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "blog_id")
     private Integer idBlog;
+
     @Column(name = "create_day")
     private String createDay;
+
     @Column(name = "blog_title")
     private String title;
+
     @Column(name = "blog_content")
     private String content;
+
     @ManyToOne
     @JoinColumn(name = "id_category")
     private Category category;
@@ -21,7 +25,7 @@ public class Blog {
     public Blog() {
     }
 
-    public Blog( String createDay, String title, String content) {
+    public Blog(String createDay, String title, String content) {
         this.idBlog = idBlog;
         this.createDay = createDay;
         this.title = title;
