@@ -11,8 +11,7 @@
     <span><button><a style="text-decoration: none" th:href="@{/list}">Back to product list</a></button></span>
 </p>
 <form th:action="@{/search}" th:object="${blog}" method="get">
-    <input placeholder="Enter the blog's name" type="text"
-           th:field="*{title}">
+    <input placeholder="Enter the blog's name" type="text" th:field="*{title}">
     <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
 </form>
 <div class="notify">

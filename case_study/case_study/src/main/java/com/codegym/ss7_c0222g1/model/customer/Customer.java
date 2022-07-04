@@ -1,9 +1,6 @@
 package com.codegym.ss7_c0222g1.model.customer;
 
-//import com.casestudy.model.contract.Contract;
-
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity(name = "customer")
 public class Customer {

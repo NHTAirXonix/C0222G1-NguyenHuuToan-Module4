@@ -11,7 +11,7 @@ import java.util.List;
 @Transactional
 public interface CustomerRepository extends JpaRepository<Customer,Integer> {
 
-    @Query(value = "select id from customer where status_delete = '' ", nativeQuery = true)
+    @Query(value = "select * from customer where status_delete = 0 ", nativeQuery = true)
     List<Customer> findAll();
 
 }
