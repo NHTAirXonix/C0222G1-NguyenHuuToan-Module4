@@ -24,12 +24,12 @@ public class CustomerController {
     @Autowired
     private CustomerTypeService customerTypeService;
 
-    @GetMapping("/list")
-    public String showList(Model model) {
-        model.addAttribute("customer", new Customer());
-        model.addAttribute("customerList", customerService.findAll());
-        return "customer/CustomerList";
-    }
+//    @GetMapping("/list")
+//    public String showList(Model model) {
+//        model.addAttribute("customer", new Customer());
+//        model.addAttribute("customerList", customerService.findAll());
+//        return "customer/CustomerList";
+//    }
 
     @GetMapping("/create")
     public String showFormAddCustomer(Model model) {
@@ -39,7 +39,7 @@ public class CustomerController {
         return "customer/CustomerAdd";
     }
 
-    @PostMapping("/customer/save")
+    @PostMapping("/save")
     public String save(Customer customer) {
         customerService.save(customer);
         return "redirect:/customer/list";

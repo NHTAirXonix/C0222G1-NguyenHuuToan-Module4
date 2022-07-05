@@ -16,6 +16,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.awt.print.Pageable;
+
 @Controller
 public class MainController {
     @Autowired
@@ -36,10 +38,12 @@ public class MainController {
     }
 
     @GetMapping("/customer/list")
-    public String showList(Model model) {
+    public String showList(@RequestParam(name = "page", defaultValue = "0") int page,Model model) {
+        Sort sort = Sort.by("customer_id");
+        Page<Customer> customerList = customerService.findAll(PageRequest.of(page, 3, sort));
         model.addAttribute("customer", new Customer());
-        model.addAttribute("customerList", customerService.findAll());
-        return "customer/CustomerList";
+        model.addAttribute("customerList", customerList);
+        return "/customer/CustomerList";
     }
 
     @GetMapping("/list")

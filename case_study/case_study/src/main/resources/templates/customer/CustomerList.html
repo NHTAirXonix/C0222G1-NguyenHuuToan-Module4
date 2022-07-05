@@ -11,18 +11,18 @@
         .header-panel {
             background-color: #046056;
             height: 80px;
-            width: 100%;
+            width: 80%;
         }
 
         .content {
             background-color: white;
-            width: 100%;
+            width: 80%;
         }
 
         .bottom {
             background-color: #046056;
             height: 80px;
-            width: 100%;
+            width: 80%;
         }
 
         .greenButton {
@@ -177,7 +177,8 @@
         </td>
 
         <td>
-            <button style="background-color: red" type="button" class="btn btn-primary" data-toggle="modal"
+            <button style="
+            background-color: red" type="button" class="btn btn-primary" data-toggle="modal"
                     data-target="#${customer.customer_id}">Delete
             </button>
             <div class="modal fade" id="${customer.customer_id}" tabindex="-1"
@@ -207,25 +208,34 @@
                 </div>
             </div>
         </td>
-
-
-        <td><a th:href="@{/delete/{id}(id=${customer.customerId})}">delete</a></td>
+<!--        <td><a th:href="@{/delete/{id}(id=${customer.customerId})}">delete</a></td>-->
     </tr>
     </tbody>
-
-
 </table>
 
-<!--END BODY WEB-->
-
-
-<!--FOOTER WEB-->
-
-<div class="bottom">
-
+<div style="text-align: center">
+    <span>
+            <a th:if="${customerList.hasPrevious()}" class="btn btn-primary"
+               style="background-color: white; color: black"
+               th:href="@{/customer/list(page = ${customerList.number - 1},name = ${name})}"
+               role="button">Previous
+            </a>
+    </span>
+    <span th:each="pageNo: ${#numbers.sequence(0,customerList.totalPages - 1)}">
+        <a class="btn btn-primary" th:href="@{/customer/list(page = ${pageNo},name = ${name})}" th:text="${pageNo}"
+           style="background-color: white; color: black">
+        </a>
+    </span>
+    <span>
+        <a th:if="${customerList.hasNext()}" class="btn btn-primary"
+           style="background-color: white; color: black"
+           th:href="@{/customer/list(page = ${customerList.number +1},name = ${name})}"
+           role="button">Next
+            </a>
+    </span>
 </div>
 
-
+<!--END BODY WEB-->
 </body>
 
 
@@ -238,78 +248,5 @@
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
 <script src="/static/boostrap/bootstrap413/js/bootstrap.bundle.js"></script>
-
-<!--WEB SCRIPT CONTROLLER-->
-<script>
-    var size = 2;
-
-    function loadMore() {
-        size += 2;
-        $.ajax({
-            type: "GET",
-            //tên API
-            url: `/ajax/list/${size}`,
-            //xử lý khi thành công
-            success: function (data) {
-                if (size > data.length) {
-                    alert("Đã hết danh sách cần hiển thị!")
-                }
-                successHandler(data)
-            }
-        });
-        //chặn sự kiện mặc định của thẻ
-        event.preventDefault();
-    }
-
-    function successHandler(data) {
-        let content =
-            '<tr>\n' +
-            '<th class="header"><p style="text-align: center">ID</p></th>\n' +
-            '<th class="header"><p style="text-align: center">TYPE ID</p></th>\n' +
-            '<th class="header"><p style="text-align: center">NAME</p></th>\n' +
-            '<th class="header"><p style="text-align: center">BIRTHDAY</p></th>\n' +
-            '<th class="header"><p style="text-align: center">GENDER</p></th>\n' +
-            '<th class="header"><p style="text-align: center">ID CARD</p></th>\n' +
-            '<th class="header"><p style="text-align: center">PHONE</p></th>\n' +
-            '<th class="header"><p style="text-align: center">EMAIL</p></th>\n' +
-            '<th class="header"><p style="text-align: center">ADDRESS</p></th>\n' +
-            '<th class="header"><p style="text-align: center">EDIT</p></th>\n' +
-            '<th class="header"><p style="text-align: center">DELETE</p></th>\n' +
-            '</tr>';
-        for (let i = 0; i < data.length; i++) {
-            content += getBlog(data[i]);
-        }
-        document.getElementById('listBlog').innerHTML = content;
-    }
-
-    $(document).ready(function () {
-        $("#formSearch").on("click", ".buttonSearch", function (event) {
-            let titleSearch = "";
-            titleSearch += $('#titleSearch').val();
-            $.ajax({
-                type: "GET",
-                //tên API
-                url: `/ajax/search/${titleSearch}`,
-                //xử lý khi thành công
-                success: function (data) {
-                    console.log(data)
-                    // hien thi danh sach o day
-                    successHandler(data);
-                }
-            });
-        })
-    })
-
-    function getBlog(blog) {
-        return `<tr><td>${blog.idBlog}</td>` +
-            `<td>${blog.createDay}</td>` +
-            `<td>${blog.category.name}</td>` +
-            `<td>${blog.title}</td>` +
-            `<td><a href="@{/edit/{id}(id=${blog.idBlog})}">Edit</a></td>` +
-            `<td><a href="@{/view/{id}(id=${blog.idBlog})}">view</a></td>` +
-            `<td><a href="@{/delete/{id}(id=${blog.idBlog})}">delete</a></td></tr>`;
-    }
-
-</script>
 
 </html>
