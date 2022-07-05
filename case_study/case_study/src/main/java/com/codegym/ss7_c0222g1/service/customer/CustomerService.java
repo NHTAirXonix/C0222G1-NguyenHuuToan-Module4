@@ -22,4 +22,9 @@ public class CustomerService implements ICustomerService {
     public void save(Customer customer) {
         customerRepository.save(customer);
     }
+
+    @Override
+    public Customer findById(String id) {
+        return customerRepository.findById(id);
+    }
 }

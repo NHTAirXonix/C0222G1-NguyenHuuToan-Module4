@@ -1,6 +1,7 @@
 package com.codegym.ss7_c0222g1.model.customer;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity(name = "customer")
 public class Customer {
@@ -13,24 +14,32 @@ public class Customer {
     private CustomerType customerType;
 
     @Column(name = "customer_name", columnDefinition = "VARCHAR(45)")
+    @NotBlank(message = "Can not blank or empty")
     private String customerName;
 
+
     @Column(name = "customer_birthday", columnDefinition = "DATE")
+    @NotBlank(message = "Can not blank or empty")
     private String customerBirthDay;
 
     @Column(name = "customer_gender", columnDefinition = "BIT(1)")
+    @NotBlank(message = "Can not blank or empty")
     private Integer customerGender;
 
     @Column(name = "customer_id_card", columnDefinition = "VARCHAR(45)")
+    @NotBlank(message = "Can not blank or empty")
     private String customerIdCard;
 
     @Column(name = "customer_phone", columnDefinition = "VARCHAR(45)")
+    @NotBlank(message = "Can not blank or empty")
     private String customerPhone;
 
     @Column(name = "customer_email", columnDefinition = "VARCHAR(45)")
+    @NotBlank(message = "Can not blank or empty")
     private String customerEmail;
 
     @Column(name = "customer_address", columnDefinition = "VARCHAR(45)")
+    @NotBlank(message = "Can not blank or empty")
     private String customerAddress;
 
     @Column(name = "status_delete", columnDefinition = "BIT(1)")

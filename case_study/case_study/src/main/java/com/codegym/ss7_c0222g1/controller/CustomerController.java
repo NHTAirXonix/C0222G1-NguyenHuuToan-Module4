@@ -1,19 +1,15 @@
 package com.codegym.ss7_c0222g1.controller;
 
-import com.codegym.ss7_c0222g1.model.Blog;
 import com.codegym.ss7_c0222g1.model.customer.Customer;
-import com.codegym.ss7_c0222g1.model.customer.CustomerType;
-import com.codegym.ss7_c0222g1.repository.customer.CustomerRepository;
 import com.codegym.ss7_c0222g1.service.customer.CustomerService;
 import com.codegym.ss7_c0222g1.service.customer.CustomerTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/customer")
@@ -24,19 +20,20 @@ public class CustomerController {
     @Autowired
     private CustomerTypeService customerTypeService;
 
-//    @GetMapping("/list")
-//    public String showList(Model model) {
-//        model.addAttribute("customer", new Customer());
-//        model.addAttribute("customerList", customerService.findAll());
-//        return "customer/CustomerList";
-//    }
+    @GetMapping("/list")
+    public String showList(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+        Sort sort = Sort.by("customer_id");
+        Page<Customer> customerList = customerService.findAll(PageRequest.of(page, 5, sort));
+        model.addAttribute("customer", new Customer());
+        model.addAttribute("customerList", customerList);
+        return "/customer/CustomerList";
+    }
 
     @GetMapping("/create")
-    public String showFormAddCustomer(Model model) {
-        List<CustomerType> customerTypeList = customerTypeService.findAll();
+    public String showCreateCustomer(Model model) {
         model.addAttribute("customer", new Customer());
-        model.addAttribute("customerTypeList", customerTypeList);
-        return "customer/CustomerAdd";
+        model.addAttribute("listCustomerType", customerTypeService.findAll());
+        return "/customer/CustomerAdd";
     }
 
     @PostMapping("/save")
@@ -45,4 +42,16 @@ public class CustomerController {
         return "redirect:/customer/list";
     }
 
+    @GetMapping("/edit/{id}")
+    public String showEditCustomer(@PathVariable String id, Model model) {
+        model.addAttribute("customer", customerService.findById(id));
+        model.addAttribute("listCustomerType", customerTypeService.findAll());
+        return "/customer/CustomerEdit";
+    }
+
+    @PostMapping("/update")
+    public String update(Customer customer) {
+        customerService.save(customer);
+        return "redirect:/customer/list";
+    }
 }

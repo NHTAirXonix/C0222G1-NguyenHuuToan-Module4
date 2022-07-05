@@ -12,9 +12,9 @@
     </style>
 </head>
 <body>
-<form th:action="@{/save}" th:object="${product}" method="POST" novalidate="novalidate"
-      style="width: 90%; margin: auto; margin-top: 100px; background-color: white;padding: 20px;border-radius: 10px">
+<form th:action="@{/save}" th:object="${product}" method="POST" novalidate="novalidate" style="width: 90%; margin: auto; margin-top: 100px; background-color: white;padding: 20px;border-radius: 10px">
     <h3 style="text-align: center;font-family: 'Arial Black',serif;">ADD NEW PRODUCT</h3>
+
     <div hidden class="form-group">
         <label for="productId">Product Id</label>
         <p style="color: red" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></p>

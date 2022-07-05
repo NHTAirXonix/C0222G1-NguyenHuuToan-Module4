@@ -10,4 +10,6 @@ public interface ICustomerService {
     Page<Customer> findAll(Pageable pageable);
 
     void save(Customer customer);
+
+    Customer findById(String id);
 }

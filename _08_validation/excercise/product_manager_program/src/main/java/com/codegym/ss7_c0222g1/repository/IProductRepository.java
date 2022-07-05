@@ -21,6 +21,7 @@ public interface IProductRepository extends JpaRepository<Product,Integer> {
     @Query(value = "update  product set product_status = '1' where product_id = :id",nativeQuery = true)
     void deleteById(@Param("id") String id);
 
+
     @Query(value = "select * from product where product_name  like %:name% ",nativeQuery = true)
     Page<Product> searchByName(@Param("name") String name, Pageable pageable);
 }

@@ -8,6 +8,4 @@ import javax.transaction.Transactional;
 @Transactional
 public interface CustomerTypeRepository extends JpaRepository<CustomerType,Integer> {
 
-
-
 }
