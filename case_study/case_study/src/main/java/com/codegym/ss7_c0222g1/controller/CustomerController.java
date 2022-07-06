@@ -9,7 +9,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/customer")
@@ -21,11 +24,14 @@ public class CustomerController {
     private CustomerTypeService customerTypeService;
 
     @GetMapping("/list")
-    public String showList(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
+    public String showList(@RequestParam(name = "page", defaultValue = "0") int page,
+                           @RequestParam(name = "customerName", defaultValue = "") String customerName,
+                           Model model) {
         Sort sort = Sort.by("customer_id");
-        Page<Customer> customerList = customerService.findAll(PageRequest.of(page, 5, sort));
+        Page<Customer> customerList = customerService.searchByNameCustomer(customerName, PageRequest.of(page, 5, sort));
         model.addAttribute("customer", new Customer());
         model.addAttribute("customerList", customerList);
+        model.addAttribute("customerName", customerName);
         return "/customer/CustomerList";
     }
 
@@ -37,9 +43,14 @@ public class CustomerController {
     }
 
     @PostMapping("/save")
-    public String save(Customer customer) {
-        customerService.save(customer);
-        return "redirect:/customer/list";
+    public String save(@Valid @ModelAttribute("customer") Customer customer, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("listCustomerType", customerTypeService.findAll());
+            return "/customer/CustomerAdd";
+        } else {
+            customerService.save(customer);
+            return "redirect:/customer/list";
+        }
     }
 
     @GetMapping("/edit/{id}")
@@ -50,8 +61,19 @@ public class CustomerController {
     }
 
     @PostMapping("/update")
-    public String update(Customer customer) {
-        customerService.save(customer);
+    public String update(@Valid @ModelAttribute("customer") Customer customer, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("listCustomerType", customerTypeService.findAll());
+            return "/customer/CustomerEdit";
+        } else {
+            customerService.save(customer);
+            return "redirect:/customer/list";
+        }
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable(name = "id") String id, RedirectAttributes redirectAttributes) {
+        customerService.delete(id);
         return "redirect:/customer/list";
     }
 }

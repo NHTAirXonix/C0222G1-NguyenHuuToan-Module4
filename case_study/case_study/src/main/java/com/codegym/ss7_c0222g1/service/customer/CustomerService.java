@@ -27,4 +27,14 @@ public class CustomerService implements ICustomerService {
     public Customer findById(String id) {
         return customerRepository.findById(id);
     }
+
+    @Override
+    public void delete(String id) {
+        customerRepository.delete(id);
+    }
+
+    @Override
+    public Page<Customer> searchByNameCustomer(String name, Pageable pageable) {
+        return customerRepository.searchByNameCustomer(name,pageable);
+    }
 }

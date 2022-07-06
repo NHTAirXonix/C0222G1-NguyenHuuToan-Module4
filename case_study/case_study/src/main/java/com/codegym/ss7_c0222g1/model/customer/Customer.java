@@ -7,6 +7,7 @@ import javax.validation.constraints.NotBlank;
 public class Customer {
     @Id
     @Column(name = "customer_id", columnDefinition = "VARCHAR(45)")
+    @NotBlank(message = "Can not blank or empty")
     private String customerId;
 
     @ManyToOne
@@ -23,7 +24,6 @@ public class Customer {
     private String customerBirthDay;
 
     @Column(name = "customer_gender", columnDefinition = "BIT(1)")
-    @NotBlank(message = "Can not blank or empty")
     private Integer customerGender;
 
     @Column(name = "customer_id_card", columnDefinition = "VARCHAR(45)")
@@ -44,6 +44,9 @@ public class Customer {
 
     @Column(name = "status_delete", columnDefinition = "BIT(1)")
     private Integer statusDelete = 0;
+
+//    @OneToMany(mappedBy = "customer")
+//    private Set<Contract> contractList;
 
     public Customer() {
     }

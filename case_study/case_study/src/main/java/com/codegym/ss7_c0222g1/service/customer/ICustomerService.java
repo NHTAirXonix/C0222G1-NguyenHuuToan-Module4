@@ -12,4 +12,8 @@ public interface ICustomerService {
     void save(Customer customer);
 
     Customer findById(String id);
+
+    void delete (String id);
+
+    Page<Customer> searchByNameCustomer(String name,Pageable pageable);
 }
