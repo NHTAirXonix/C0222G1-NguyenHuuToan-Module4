@@ -1,6 +1,7 @@
 package com.codegym.ss7_c0222g1.model.employee;
 
 import com.codegym.ss7_c0222g1.model.login.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 
@@ -17,7 +18,6 @@ public class Employee {
 
     @Column(name = "employee_birthday", columnDefinition = "DATE")
     private String employeeBirthDay;
-
 
     @Column(name = "employee_id_card", columnDefinition = "VARCHAR(45)")
     private String employeeIdCard;
@@ -48,6 +48,7 @@ public class Employee {
 
     @OneToOne
     @JoinColumn(name = "user_name", referencedColumnName = "user_name", columnDefinition = "VARCHAR(45)")
+
     private User user;
 
     @Column(name = "status_delete", columnDefinition = "BIT(1)")

@@ -14,16 +14,12 @@ public class Position {
     @Column(name = "position_name", columnDefinition = "VARCHAR(45)")
     private String positionName;
 
-    @OneToMany(mappedBy = "position")
-    private Set<Employee> employeeList;
-
     public Position() {
     }
 
-    public Position(Integer positionId, String positionName, Set<Employee> employeeList) {
+    public Position(Integer positionId, String positionName) {
         this.positionId = positionId;
         this.positionName = positionName;
-        this.employeeList = employeeList;
     }
 
     public Integer getPositionId() {
@@ -40,13 +36,5 @@ public class Position {
 
     public void setPositionName(String positionName) {
         this.positionName = positionName;
-    }
-
-    public Set<Employee> getEmployeeList() {
-        return employeeList;
-    }
-
-    public void setEmployeeList(Set<Employee> employeeList) {
-        this.employeeList = employeeList;
     }
 }

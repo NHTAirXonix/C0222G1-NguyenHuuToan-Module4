@@ -14,16 +14,12 @@ public class Division {
     @Column(name = "division_name", columnDefinition = "VARCHAR(45)")
     private String divisionName;
 
-    @OneToMany(mappedBy = "division")
-    private Set<Employee> employeeList;
-
     public Division() {
     }
 
-    public Division(Integer divisionId, String divisionName, Set<Employee> employeeList) {
+    public Division(Integer divisionId, String divisionName) {
         this.divisionId = divisionId;
         this.divisionName = divisionName;
-        this.employeeList = employeeList;
     }
 
     public Integer getDivisionId() {
@@ -42,11 +38,4 @@ public class Division {
         this.divisionName = divisionName;
     }
 
-    public Set<Employee> getEmployeeList() {
-        return employeeList;
-    }
-
-    public void setEmployeeList(Set<Employee> employeeList) {
-        this.employeeList = employeeList;
-    }
 }

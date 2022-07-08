@@ -14,16 +14,12 @@ public class Education {
     @Column(name = "education_name", columnDefinition = "VARCHAR(45)")
     private String educationName;
 
-    @OneToMany(mappedBy = "education")
-    private Set<Employee> employeeList;
-
     public Education() {
     }
 
-    public Education(Integer educationId, String educationName, Set<Employee> employeeList) {
+    public Education(Integer educationId, String educationName) {
         this.educationId = educationId;
         this.educationName = educationName;
-        this.employeeList = employeeList;
     }
 
     public Integer getEducationDegreeId() {
@@ -40,13 +36,5 @@ public class Education {
 
     public void setEducationDegreeName(String educationDegreeName) {
         this.educationName = educationDegreeName;
-    }
-
-    public Set<Employee> getEmployeeList() {
-        return employeeList;
-    }
-
-    public void setEmployeeList(Set<Employee> employeeList) {
-        this.employeeList = employeeList;
     }
 }

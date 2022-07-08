@@ -1,6 +1,8 @@
 package com.codegym.ss7_c0222g1.model.login;
 
 import com.codegym.ss7_c0222g1.model.employee.Employee;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -16,6 +18,7 @@ public class User {
     private String password;
 
     @OneToOne(mappedBy = "user")
+    @JsonBackReference(value = "username")
     private Employee employee;
 
     @ManyToMany
