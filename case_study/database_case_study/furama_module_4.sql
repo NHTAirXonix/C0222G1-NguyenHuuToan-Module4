@@ -78,30 +78,50 @@ INSERT INTO employee (employee_id, employee_address, employee_birthday, employee
 (14, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "tuan@gmail.com.vn", "201802281", "Hồ Duy Tuấn", "0978144014", 10000, 0, 1, 2, 3, "tuan"),
 (15, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "chung@gmail.com.vn", "201802281", "Hồ Văn Chung", "0978144014", 10000, 0, 1, 2, 3, "chung");
 
-INSERT INTO rent_type (id, `type`) VALUES
+INSERT INTO rent_type (rent_type_id, rent_type) VALUES
 (1,"hour"),
 (2,"day"),
 (3,"month");
 
-INSERT INTO service_type (id,`name`) VALUES
+INSERT INTO facility_type (service_type_id,`name`) VALUES
 (1,"Villa"),
 (2,"House"),
 (3,"Room");
 
-INSERT INTO service (id, amount_customer, area, cost, `description`, floor, `name`, pool_area, standard_room, `status`, rent_type_id, service_type_id) VALUES
-(1,10,100,2000,"Villa 2 floor", 2,"Villa 2", 10,"Vip",0,2,3),
-(2,10,100,2000,"Villa 2 floor", 2,"Villa 2", 10,"Vip",0,2,3),
-(3,10,100,2000,"Villa 2 floor", 2,"Villa 2", 10,"Vip",0,2,3),
-(4,10,100,2000,"Villa 2 floor", 2,"Villa 2", 10,"Vip",0,2,3),
-(5,10,100,2000,"Villa 2 floor", 2,"Villa 2", 10,"Vip",0,2,3),
-(6,10,100,2000,"Villa 2 floor", 2,"Villa 2", 10,"Vip",0,2,3),
-(7,10,100,2000,"Villa 2 floor", 2,"Villa 2", 10,"Vip",0,2,3),
-(8,10,100,2000,"Villa 2 floor", 2,"Villa 2", 10,"Vip",0,2,3),
-(9,10,100,2000,"Villa 2 floor", 2,"Villa 2", 10,"Vip",0,2,3),
-(10,10,100,2000,"Villa 2 floor", 2,"Villa 2", 10,"Vip",0,2,3),
-(11,10,100,2000,"Villa 2 floor", 2,"Villa 2", 10,"Vip",0,2,3),
-(12,10,100,2000,"Villa 2 floor", 2,"Villa 2", 10,"Vip",0,2,3),
-(13,10,100,2000,"Villa 2 floor", 2,"Villa 2", 10,"Vip",0,2,3),
-(14,10,100,2000,"Villa 2 floor", 2,"Villa 2", 10,"Vip",0,2,3),
-(15,10,100,2000,"Villa 2 floor", 2,"Villa 2", 10,"Vip",0,2,3);
+INSERT INTO facility (id, amount_customer, area, cost, `description`, floor, `name`, pool_area, standard_room, `status`, rent_type_id, service_type_id,free_service) VALUES
+(1,10,100,1000,"House 1 floor", 2,"House Lion1", 0,"Vip",0,2,2,""),
+(2,20,200,2000,"Villa 1 floor", 2,"Villa Eagle1", 10,"Vip",0,2,1,""),
+(3,15,500,1500,"0", 0,"Room Alpha1", 0,"0",0,2,3,"Karaoke"),
+(4,12,1000,1000,"Villa 2 floor", 2,"Villa Eagle2", 10,"Vip",0,2,1,""),
+(5,15,200,1500,"Villa 3 floor", 2,"Villa Eagle3", 10,"Vip",0,2,1,""),
+(6,20,150,2500,"0", 0,"Room Alpha2", 0,"0",0,2,3,"Karaoke"),
+(7,15,120,2200,"House 2 floor", 2,"House Lion2",0,"Vip",0,2,2,""),
+(8,10,200,2100,"Villa 2 floor", 2,"Villa Eagle3", 10,"Vip",0,2,1,""),
+(9,12,300,2800,"Villa 5 floor", 2,"Villa Eagle5", 10,"Vip",0,2,1,""),
+(10,15,500,1000,"House 3", 2,"House Lion3", 0,"Vip",0,2,2,"");
+
+INSERT contract ( contract_id,contract_deposit,contract_end_date,contract_start_date,status_delete,customer_id,employee_id,id) VALUES
+(1,500,"2022-10-10","2022-10-09",0,"KH-001",2,1),
+(2,300,"2022-10-10","2022-10-09",0,"KH-002",2,2),
+(3,200,"2022-10-10","2022-10-09",0,"KH-001",2,4),
+(4,900,"2022-10-10","2022-10-09",0,"KH-003",2,5),
+(5,800,"2022-10-10","2022-10-09",0,"KH-001",2,3),
+(6,700,"2022-10-10","2022-10-09",0,"KH-004",2,7),
+(7,400,"2022-10-10","2022-10-09",0,"KH-001",2,6),
+(8,500,"2022-10-10","2022-10-09",0,"KH-005",2,8),
+(9,200,"2022-10-10","2022-10-09",0,"KH-001",2,9),
+(10,100,"2022-10-10","2022-10-09",0,"KH-007",2,10);
+
+INSERT attach_service (attach_service_id, attach_service_cost, attach_service_name, attach_service_status, attach_service_unit) VALUES
+(1,200,"massage","good","1 hour"),
+(2,300,"drink","good","1 cogtail"),
+(3,300,"vehicle","busy","1 car"),
+(4,500,"food","normal","1 slot");
+
+INSERT contract_detail (contract_detail_id, quantity, attach_service_id, contract_id) VALUES
+(1, 5, 1, 1),
+(2, 6, 2, 2),
+(3, 3, 2, 3),
+(4, 2, 3, 4),
+(5, 7, 4, 5);
 

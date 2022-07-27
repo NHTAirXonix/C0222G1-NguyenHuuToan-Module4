@@ -1,7 +1,11 @@
 package com.codegym.ss7_c0222g1.model.customer;
 
+import com.codegym.ss7_c0222g1.model.contract.Contract;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.Set;
 
 @Entity(name = "customer")
 public class Customer {
@@ -45,8 +49,9 @@ public class Customer {
     @Column(name = "status_delete", columnDefinition = "BIT(1)")
     private Integer statusDelete = 0;
 
-//    @OneToMany(mappedBy = "customer")
-//    private Set<Contract> contractList;
+    @OneToMany(mappedBy = "customer")
+    @JsonBackReference("customer")
+    private Set<Contract> contractList;
 
     public Customer() {
     }

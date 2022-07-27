@@ -19,7 +19,26 @@
             color: white;
             text-decoration: none;
             border-radius: 5px;
-            border-color: #046056;
+            border-color: unset;
+            height: 35px;
+        }
+
+        .redButton {
+            background-color: #ff0000;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border-color: unset;
+            height: 35px;
+        }
+
+        .greyButton {
+            background-color: #555555;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            border-color: unset;
+            height: 35px;
         }
 
         .titles {
@@ -73,34 +92,14 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light" ; style="background-color: #046056">
     <a class="navbar-brand" th:href="@{/}">Home</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
 
     <a class="navbar-brand" th:href="@{/customer/list}">Customer</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
 
     <a class="navbar-brand" th:href="@{/employee/list}">Employee</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <a class="navbar-brand" th:href="@{/}">Service</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <a class="navbar-brand" th:href="@{/service/list}">Service</a>
 
-    <a class="navbar-brand" th:href="@{/}">Contract</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <a class="navbar-brand" th:href="@{/contract/list}">Contract</a>
 </nav>
 
 <!--START BODY WEB-->
@@ -167,20 +166,24 @@
             </td>
             <td>
                 <center>
-                    <button class="greenButton" type="button" data-toggle="modal">
+                    <button class="redButton" type="button" data-toggle="modal">
                         <a style="color: white;text-decoration: none"
-                           href="#" th:attr="onclick=|customerIndex('${customer.customerId}')|" data-toggle="modal"
+                           href="#"
+                           th:attr="onclick=|customerIndex('${customer.customerId}','${customer.customerName}')|"
+                           data-toggle="modal"
                            data-target="#delete">Delete
                         </a>
                     </button>
                 </center>
+            </td>
         </tr>
         </tbody>
     </table>
 
     <div style="text-align: center">
         <span th:each="pageNo: ${#numbers.sequence(0,customerList.totalPages - 1)}">
-        <a class="btn btn-primary" th:href="@{/customer/list(page = ${pageNo},customerName = ${customerName})}" th:text="${pageNo+1}"
+        <a class="btn btn-primary" th:href="@{/customer/list(page = ${pageNo},customerName = ${customerName})}"
+           th:text="${pageNo+1}"
            style="background-color: #046056; color: white">
         </a>
         </span>
@@ -192,8 +195,13 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title w-100 text-center" id="confirm"></h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title w-100 text-left"> Warning !</h4>
+                    <button type="button" class="redButton" style="height: 30px;width: 30px" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="confirm"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-dark" onclick="customerIndex2()">
@@ -224,10 +232,12 @@
 
 <script>
     var id;
+    var name1;
 
-    function customerIndex(index) {
-        document.getElementById("confirm").innerHTML = "Do you want to delete customer have <br>" + "ID is: " + index;
+    function customerIndex(index, name) {
+        document.getElementById("confirm").innerHTML = "Do you want to delete customer have " + "<br>ID is: " + index + "<br>Name is:" + name;
         id = index;
+        name1 = name;
     };
 
     function customerIndex2() {

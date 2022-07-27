@@ -32,7 +32,7 @@
             height: 35px;
         }
 
-        .blueButton {
+        .greyButton {
             background-color: #555555;
             color: white;
             text-decoration: none;
@@ -92,34 +92,14 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light" ; style="background-color: #046056">
     <a class="navbar-brand" th:href="@{/}">Home</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
 
     <a class="navbar-brand" th:href="@{/customer/list}">Customer</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
 
     <a class="navbar-brand" th:href="@{/employee/list}">Employee</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
 
-    <a class="navbar-brand" th:href="@{/}">Service</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <a class="navbar-brand" th:href="@{/service/list}">Service</a>
 
-    <a class="navbar-brand" th:href="@{/}">Contract</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <a class="navbar-brand" th:href="@{/contract/list}">Contract</a>
 </nav>
 
 <!--START BODY WEB-->
@@ -231,8 +211,7 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label for="employeeNameM">Employee Name</label>
-                            <!--                            <p style="color: red" th:if="${#fields.hasErrors('employeeNameM')}"-->
-                            <!--                               th:errors="*{employeeNameM}"></p>-->
+                            <p style="color: red" id="employeeNameA"></p>
                             <input type="text" class="form-control" id="employeeNameM">
                         </div>
                     </div>
@@ -337,10 +316,8 @@
                     </div>
                 </div>
 
-
-                <span><input class="btn btn-primary save" data-dismiss="modal" id="save" style="background-color: green"
-                             value="Save"/></span>
-                <span><button type="button" class="btn btn-dark " data-dismiss="modal">Cancel</button></span>
+                <span><button class="greenButton save" id="save" >Save</button></span>
+                <span><button type="button" class="greyButton " data-dismiss="modal">Cancel</button></span>
             </form>
         </div>
     </div>
@@ -353,7 +330,6 @@
     <div class="modal-dialog">
         <div class="modal-content"
              style="width: 800px; position: absolute;float: left;left: 50%;top: 50%; transform: translate(-50%, 0%);">
-
             <form id="editEmployee" novalidate="novalidate" class="p-5">
                 <h3 style="text-align: center;font-family: 'Arial Black',serif;">EDIT EMPLOYEE</h3>
 
@@ -475,11 +451,8 @@
                     </div>
                 </div>
 
-
-                <span><input class="btn btn-primary editbutton" data-dismiss="modal" id="editbutton"
-                             style="background-color: green"
-                             value="Save"/></span>
-                <span><button type="button" class="btn btn-dark " data-dismiss="modal">Cancel</button></span>
+                <span><button class="greenButton editbutton" data-dismiss="modal" id="editbutton" >Save</button></span>
+                <span><button type="button" class="greyButton" data-dismiss="modal">Cancel</button></span>
             </form>
         </div>
     </div>
@@ -498,14 +471,13 @@
             </div>
             <div id="removeEmployee">
                 <div class="modal-body">
-
                     Are you sure you want to delete a employee: <br>
                     ID: <input style="border: none; outline: none; color: #ff0000" id="idD" readonly> <br>
                     Name is: <input style="border: none; outline: none; color: #ff0000" id="nameD" readonly> <br>
                 </div>
                 <div class="modal-footer">
                     <button type="button"  onclick="deleteEmp()"  class="redButton" data-dismiss="modal">Delete</button>
-                    <button type="button" class="blueButton" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="greyButton" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
         </div>
@@ -518,6 +490,7 @@
 
 
 <!--WEB RESOURCES-->
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/boostrap/datatables/js/jquery.dataTables.js"></script>
 <script src="/boostrap/datatables/js/dataTables.bootstrap4.min.js"></script>
@@ -528,8 +501,6 @@
 <script src="/boostrap/bootstrap413/js/bootstrap.bundle.js"></script>
 
 <script>
-
-
     // $(document).ready(function () {
         let a;
         let getIndex;
@@ -715,6 +686,11 @@
                 url: "/employeeAjax/create",
                 //xử lý khi thành công
                 success: successHandler,
+                error: function (event) {
+                    if (event.responseJSON.employeeName !== "undefined")
+                    {document.getElementById('employeeNameA').innerHTML = event.responseJSON.employeeName;}
+
+                }
 
             });
             //chặn sự kiện mặc định của thẻ
@@ -728,8 +704,9 @@
                 type: "GET",
                 url: "/employeeAjax/list",
                 success: function (data) {
-                    console.log("----------------------")
-                    console.log(data);
+                    $("#add").removeClass("in");
+                    $(".modal-backdrop").remove();
+                    $("#add").hide();
                     let content = '';
                     for (let i = 0; i < data.length; i++) {
                         content += getEmployee(data[i]);
@@ -754,7 +731,7 @@
                 <td>${employee.employeeAddress}</td>
                 <td>${employee.position.positionName}</td>
                 <td>${employee.education.educationDegreeName}</td>
-                <td>${employee.division.divisionName}</td>
+                <td >${employee.division.divisionName}</td>
                 <td>
                     <center>
                         <button data-target="#edit" class="greenButton editEmployee" type="button" data-toggle="modal" th:href="${employee.employeeId}">Edit</button>
@@ -766,7 +743,6 @@
                     </center>
                 </tr>`
         }
-    // });
-</script>
 
+</script>
 </html>

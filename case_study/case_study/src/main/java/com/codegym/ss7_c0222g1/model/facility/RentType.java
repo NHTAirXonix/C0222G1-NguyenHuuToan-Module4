@@ -1,5 +1,7 @@
 package com.codegym.ss7_c0222g1.model.facility;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -7,19 +9,20 @@ import java.util.Set;
 public class RentType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "rent_type_id")
     private int id;
-
-    private String type;
+    private String rentType;
 
     @OneToMany(mappedBy = "rentType")
-    private Set<Service> serviceSet;
+    @JsonBackReference
+    private Set<Facility> serviceSet;
 
     public RentType() {
     }
 
-    public RentType(int id, String type, Set<Service> serviceSet) {
+    public RentType(int id, String rentType, Set<Facility> serviceSet) {
         this.id = id;
-        this.type = type;
+        this.rentType = rentType;
         this.serviceSet = serviceSet;
     }
 
@@ -31,19 +34,19 @@ public class RentType {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getRentType() {
+        return rentType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setRentType(String type) {
+        this.rentType = type;
     }
 
-    public Set<Service> getServiceSet() {
+    public Set<Facility> getServiceSet() {
         return serviceSet;
     }
 
-    public void setServiceSet(Set<Service> serviceSet) {
+    public void setServiceSet(Set<Facility> serviceSet) {
         this.serviceSet = serviceSet;
     }
 }

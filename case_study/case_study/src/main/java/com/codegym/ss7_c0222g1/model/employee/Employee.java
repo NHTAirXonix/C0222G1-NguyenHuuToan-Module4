@@ -4,6 +4,7 @@ import com.codegym.ss7_c0222g1.model.login.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity(name = "employee")
 public class Employee {
@@ -14,6 +15,7 @@ public class Employee {
     private Integer employeeId;
 
     @Column(name = "employee_name", columnDefinition = "VARCHAR(45)")
+    @NotEmpty(message = "Can't Empty")
     private String employeeName;
 
     @Column(name = "employee_birthday", columnDefinition = "DATE")
@@ -48,7 +50,6 @@ public class Employee {
 
     @OneToOne
     @JoinColumn(name = "user_name", referencedColumnName = "user_name", columnDefinition = "VARCHAR(45)")
-
     private User user;
 
     @Column(name = "status_delete", columnDefinition = "BIT(1)")
