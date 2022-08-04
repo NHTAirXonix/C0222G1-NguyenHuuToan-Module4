@@ -1,7 +1,6 @@
 package com.codegym.ss7_c0222g1.model.employee;
 
-import com.codegym.ss7_c0222g1.model.login.User;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.codegym.ss7_c0222g1.model.login.AppUser;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -50,7 +49,7 @@ public class Employee {
 
     @OneToOne
     @JoinColumn(name = "user_name", referencedColumnName = "user_name", columnDefinition = "VARCHAR(45)")
-    private User user;
+    private AppUser appUser;
 
     @Column(name = "status_delete", columnDefinition = "BIT(1)")
     private Integer statusDelete = 0;
@@ -68,8 +67,9 @@ public class Employee {
                     String employeeAddress,
                     Position position,
                     Education education,
-                    Division division,
-                    User user) {
+                    Division division
+//                    User user
+    ) {
         this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.employeeBirthDay = employeeBirthDay;
@@ -81,7 +81,7 @@ public class Employee {
         this.position = position;
         this.education = education;
         this.division = division;
-        this.user = user;
+        this.appUser = appUser;
     }
 
     public Integer getEmployeeId() {
@@ -172,12 +172,12 @@ public class Employee {
         this.division = division;
     }
 
-    public User getUser() {
-        return user;
+    public AppUser getAppUser() {
+        return appUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 
     public Integer getStatusDelete() {

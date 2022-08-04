@@ -24,7 +24,7 @@ public class Contract {
     private String endDate;
 
     @Column(name = "status_delete", columnDefinition = "BIT(1)")
-    private Integer statusDelete;
+    private Integer statusDelete=0;
 
     @Column(name = "contract_deposit", columnDefinition = "DOUBLE")
     private String deposit;
@@ -32,22 +32,17 @@ public class Contract {
 
     @ManyToOne
     @JoinColumn(name = "employee_id", columnDefinition = "INT", referencedColumnName = "employee_id")
-    @JsonBackReference("employee")
     private Employee employee;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", columnDefinition = "VARCHAR(45)", referencedColumnName = "customer_id")
-    @JsonBackReference("customer")
     private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "id", columnDefinition = "INT", referencedColumnName = "id")
-    @JsonBackReference("facility")
     private Facility facility;
 
-    @OneToMany(mappedBy = "contract")
-    @JsonBackReference("contract")
-    private List<ContractDetail> contractDetailList;
+
 
     public Contract() {
     }
@@ -59,8 +54,7 @@ public class Contract {
                     String deposit,
                     Employee employee,
                     Customer customer,
-                    Facility facility,
-                    List<ContractDetail> contractDetailList) {
+                    Facility facility) {
         this.contractId = contractId;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -69,7 +63,7 @@ public class Contract {
         this.employee = employee;
         this.customer = customer;
         this.facility = facility;
-        this.contractDetailList = contractDetailList;
+
     }
 
     public int getContractId() {
@@ -134,13 +128,5 @@ public class Contract {
 
     public void setFacility(Facility facility) {
         this.facility = facility;
-    }
-
-    public List<ContractDetail> getContractDetailList() {
-        return contractDetailList;
-    }
-
-    public void setContractDetailList(List<ContractDetail> contractDetailList) {
-        this.contractDetailList = contractDetailList;
     }
 }

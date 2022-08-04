@@ -2,7 +2,7 @@ package com.codegym.ss7_c0222g1.restControllerAjax;
 
 import com.codegym.ss7_c0222g1.model.employee.Employee;
 import com.codegym.ss7_c0222g1.service.employee.IEmployeeService;
-import com.codegym.ss7_c0222g1.service.user.IUserService;
+import com.codegym.ss7_c0222g1.service.login.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -21,7 +21,7 @@ import java.util.Map;
 @RequestMapping("/employeeAjax")
 public class EmployeeControllerAjax {
     @Autowired
-    private IUserService iUserService;
+    private UserServiceImpl iUserService;
 
     @Autowired
     private IEmployeeService iEmployeeService;
@@ -45,7 +45,7 @@ public class EmployeeControllerAjax {
             }
             return new ResponseEntity<>(errorList, HttpStatus.BAD_REQUEST);
         } else {
-            iUserService.create(employee.getUser());
+            iUserService.create(employee.getAppUser());
             iEmployeeService.create(employee);
             List<Employee> employeeList = iEmployeeService.findAllList();
             return new ResponseEntity<>(employeeList, HttpStatus.CREATED);
@@ -63,7 +63,7 @@ public class EmployeeControllerAjax {
 
     @PostMapping("/update")
     public ResponseEntity<?> editEmployee(@RequestBody Employee employee){
-        iUserService.create(employee.getUser());
+        iUserService.create(employee.getAppUser());
         iEmployeeService.create(employee);
         List<Employee> employeeList = iEmployeeService.findAllList();
         return new ResponseEntity<>(employeeList, HttpStatus.CREATED);

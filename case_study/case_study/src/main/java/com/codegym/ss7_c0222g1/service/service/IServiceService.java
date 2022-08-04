@@ -6,9 +6,11 @@ import java.util.List;
 
 public interface IServiceService {
 
+    List<Facility> findAll();
+
     Facility findById(Integer id);
 
-    public List<Facility> searchByName(String serviceName);
+    List<Facility> searchByName(String serviceName);
 
     void save(Facility facility);
 

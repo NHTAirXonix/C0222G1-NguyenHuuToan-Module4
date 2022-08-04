@@ -30,7 +30,7 @@ public interface IBlogRepository extends JpaRepository<Blog, Integer> {
     Page<Blog> findBlogWithIdCategory(@Param("id") Integer id,  Pageable pageable);
 
     @Modifying
-    @Query(value = "insert into blog (create_day,blog_category,blog_title,blog_content) value (:day,:category,:title, :content)", nativeQuery = true)
+    @Query(value = "insert into blog (create_day,id_category,blog_title,blog_content) value (:day,:category,:title, :content)", nativeQuery = true)
     void save(@Param("day") String day,
               @Param("category") Integer category,
               @Param("title") String title,

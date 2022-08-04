@@ -52,8 +52,17 @@ public class NewBlogController {
     public ResponseEntity<?> view(@PathVariable Integer id) {
         Blog blog = iBlogService.findById(id);
         if (blog==null){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+        return new ResponseEntity<>(blog, HttpStatus.OK);
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<?> save(@RequestBody Blog blog) {
+        if (blog == null) {
+            return new ResponseEntity<>( HttpStatus.NO_CONTENT);
+        }
+        iBlogService.save(blog);
         return new ResponseEntity<>(blog, HttpStatus.OK);
     }
 

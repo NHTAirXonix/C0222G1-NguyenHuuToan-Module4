@@ -1,52 +1,54 @@
 package com.codegym.ss7_c0222g1.model.login;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity(name = "role")
+@Entity
 public class Role {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "role_id", columnDefinition = "INT")
-    private Integer roleId;
+    @Column(name = "role_id")
+    private Integer id;
+
+    private String name;
+
+    @ManyToMany(mappedBy = "role")
+    @JsonIgnore
+    private Set<AppUser> appUser;
 
     public Role() {
     }
 
-    @Column(name = "role_name", columnDefinition = "VARCHAR(45)")
-    private String roleName;
-
-    @ManyToMany(mappedBy = "roleList")
-    private Set<User> userList;
-
-    public Role(Integer roleId, String roleName, Set<User> userList) {
-        this.roleId = roleId;
-        this.roleName = roleName;
-        this.userList = userList;
+    public Role(Integer id, String name, Set<AppUser> appUser) {
+        this.id = id;
+        this.name = name;
+        this.appUser = appUser;
     }
 
-    public Integer getRoleId() {
-        return roleId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getRoleName() {
-        return roleName;
+    public String getName() {
+        return name;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Set<User> getUserList() {
-        return userList;
+    public Set<AppUser> getAppUser() {
+        return appUser;
     }
 
-    public void setUserList(Set<User> userList) {
-        this.userList = userList;
+    public void setAppUser(Set<AppUser> appUser) {
+        this.appUser = appUser;
     }
 }
+

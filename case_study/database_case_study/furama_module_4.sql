@@ -1,5 +1,3 @@
-create database furama_module_4;
-
 INSERT INTO customer_type (customer_type_id,customer_type_name) VALUES
 (1,'Diamond'),
 (2,'Platinium'),
@@ -44,39 +42,35 @@ INSERT INTO division (division_id,division_name) VALUES
 (3,'Service'),
 (4,'Manage');
 
-INSERT INTO `user` (user_name,`password`) VALUES
-("hao","hao"),
-("khanh","khanh"),
-("kien","kien"),
-("truong","truong"),
-("long","long"),
-("toan","toan"),
-("hoang","hoang"),
-("luan","luan"),
-("duy","duy"),
-("hieu","hieu"),
-("cuong","cuong"),
-("trung","trung"),
-("phuc","phuc"),
-("tuan","tuan"),
-("chung","chung");
+INSERT `role` (role_id, `name`) VALUES
+(1, "ROLE_MEMBER"),
+(2, "ROLE_ADMIN");
+
+INSERT app_user (user_id, is_enable, password, user_name) VALUES
+(1, 1, "$2a$12$O82Ky1qqYfaVnxw7voRXx.WznIOe6HFalz3xawnKZNWJcpY9yNYf6", "toan"),
+(2, 1, "$2a$12$O82Ky1qqYfaVnxw7voRXx.WznIOe6HFalz3xawnKZNWJcpY9yNYf6", "admin");
+
+INSERT user_role (user_id, role_id) VALUES
+(1, 1),
+(2, 2);
+
 
 INSERT INTO employee (employee_id, employee_address, employee_birthday, employee_email, employee_id_card, employee_name, employee_phone, employee_salary, status_delete, division_id,education_id,position_id,user_name) VALUES
-(1, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "hao@gmail.com.vn", "201802281", "Nguyễn Hoàng Hảo", "0978144014", 10000, 0, 1, 2, 3, "hao"),
-(2, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "khanh@gmail.com.vn", "201802281", "Trần Văn Khánh", "0978144014", 10000, 0, 2, 2, 3, "khanh"),
-(3, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "kien@gmail.com.vn", "201802281", "Nguyễn Dương Trung Kiên", "0978144014", 10000, 0, 1, 2, 3, "kien"),
-(4, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "truong@gmail.com.vn", "201802281", "Trần Xuân Trường", "0978144014", 10000, 0, 1, 2, 3, "truong"),
-(5, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "long@gmail.com.vn", "201802281", "Nguyễn Bảo Long", "0978144014", 10000, 0, 1, 2, 3, "long"),
+(1, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "hao@gmail.com.vn", "201802281", "Nguyễn Hoàng Hảo", "0978144014", 10000, 0, 1, 2, 3, "toan"),
+(2, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "khanh@gmail.com.vn", "201802281", "Trần Văn Khánh", "0978144014", 10000, 0, 2, 2, 3, "toan"),
+(3, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "kien@gmail.com.vn", "201802281", "Nguyễn Dương Trung Kiên", "0978144014", 10000, 0, 1, 2, 3, "toan"),
+(4, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "truong@gmail.com.vn", "201802281", "Trần Xuân Trường", "0978144014", 10000, 0, 1, 2, 3, "toan"),
+(5, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "long@gmail.com.vn", "201802281", "Nguyễn Bảo Long", "0978144014", 10000, 0, 1, 2, 3, "toan"),
 (6, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "toan@gmail.com.vn", "201802281", "Nguyễn Hữu Toàn", "0978144014", 10000, 0, 1, 2, 3, "toan"),
-(7, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "hoang@gmail.com.vn", "201802281", "Huỳnh Nhật Hoàng", "0978144014", 10000, 0, 1, 2, 3, "hoang"),
-(8, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "luan@gmail.com.vn", "201802281", "Nguyễn Đình Luân", "0978144014", 10000, 0, 1, 2, 3, "luan"),
-(9, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "duy@gmail.com.vn", "201802281", "Nguyễn Thiên Duy", "0978144014", 10000, 0, 1, 2, 3, "duy"),
-(10, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "hieu@gmail.com.vn", "201802281", "Huỳnh Kim Hiếu", "0978144014", 10000, 0, 1, 2, 3, "hieu"),
-(11, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "cuong@gmail.com.vn", "201802281", "Trần Mạnh Cường", "0978144014", 10000, 0, 1, 2, 3, "cuong"),
-(12, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "trung@gmail.com.vn", "201802281", "Nguyễn Duy Trung", "0978144014", 10000, 0, 1, 2, 3, "trung"),
-(13, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "phuc@gmail.com.vn", "201802281", "Nguyễn Quang Phúc", "0978144014", 10000, 0, 1, 2, 3, "phuc"),
-(14, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "tuan@gmail.com.vn", "201802281", "Hồ Duy Tuấn", "0978144014", 10000, 0, 1, 2, 3, "tuan"),
-(15, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "chung@gmail.com.vn", "201802281", "Hồ Văn Chung", "0978144014", 10000, 0, 1, 2, 3, "chung");
+(7, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "hoang@gmail.com.vn", "201802281", "Huỳnh Nhật Hoàng", "0978144014", 10000, 0, 1, 2, 3, "toan"),
+(8, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "luan@gmail.com.vn", "201802281", "Nguyễn Đình Luân", "0978144014", 10000, 0, 1, 2, 3, "toan"),
+(9, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "duy@gmail.com.vn", "201802281", "Nguyễn Thiên Duy", "0978144014", 10000, 0, 1, 2, 3, "toan"),
+(10, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "hieu@gmail.com.vn", "201802281", "Huỳnh Kim Hiếu", "0978144014", 10000, 0, 1, 2, 3, "toan"),
+(11, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "cuong@gmail.com.vn", "201802281", "Trần Mạnh Cường", "0978144014", 10000, 0, 1, 2, 3, "toan"),
+(12, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "trung@gmail.com.vn", "201802281", "Nguyễn Duy Trung", "0978144014", 10000, 0, 1, 2, 3, "toan"),
+(13, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "phuc@gmail.com.vn", "201802281", "Nguyễn Quang Phúc", "0978144014", 10000, 0, 1, 2, 3, "toan"),
+(14, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "tuan@gmail.com.vn", "201802281", "Hồ Duy Tuấn", "0978144014", 10000, 0, 1, 2, 3, "toan"),
+(15, "14-12 Hoà An, Đà Nẵng", "1999-10-10", "chung@gmail.com.vn", "201802281", "Hồ Văn Chung", "0978144014", 10000, 0, 1, 2, 3, "toan");
 
 INSERT INTO rent_type (rent_type_id, rent_type) VALUES
 (1,"hour"),
@@ -113,15 +107,17 @@ INSERT contract ( contract_id,contract_deposit,contract_end_date,contract_start_
 (10,100,"2022-10-10","2022-10-09",0,"KH-007",2,10);
 
 INSERT attach_service (attach_service_id, attach_service_cost, attach_service_name, attach_service_status, attach_service_unit) VALUES
-(1,200,"massage","good","1 hour"),
-(2,300,"drink","good","1 cogtail"),
-(3,300,"vehicle","busy","1 car"),
-(4,500,"food","normal","1 slot");
+(1,20,"massage","good","1 hour"),
+(2,30,"drink","good","1 cogtail"),
+(3,40,"vehicle","busy","1 car"),
+(4,50,"food","normal","1 slot");
 
 INSERT contract_detail (contract_detail_id, quantity, attach_service_id, contract_id) VALUES
 (1, 5, 1, 1),
 (2, 6, 2, 2),
-(3, 3, 2, 3),
-(4, 2, 3, 4),
-(5, 7, 4, 5);
+(3, 3, 2, 2),
+(4, 2, 3, 2),
+(5, 3, 2, 4),
+(6, 2, 3, 3),
+(7, 7, 4, 5);
 

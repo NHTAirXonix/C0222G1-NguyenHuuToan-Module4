@@ -3,7 +3,7 @@ package com.codegym.ss7_c0222g1.dto.employee;
 import com.codegym.ss7_c0222g1.model.employee.Division;
 import com.codegym.ss7_c0222g1.model.employee.Education;
 import com.codegym.ss7_c0222g1.model.employee.Position;
-import com.codegym.ss7_c0222g1.model.login.User;
+import com.codegym.ss7_c0222g1.model.login.AppUser;
 
 public class EmployeeDto {
 
@@ -29,7 +29,7 @@ public class EmployeeDto {
 
     private Division division;
 
-    private User user;
+    private AppUser appUser;
 
     private Integer statusDelete = 0;
 
@@ -47,7 +47,7 @@ public class EmployeeDto {
                     Position position,
                     Education education,
                     Division division,
-                    User user) {
+                    AppUser appUser) {
         this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.employeeBirthDay = employeeBirthDay;
@@ -59,7 +59,7 @@ public class EmployeeDto {
         this.position = position;
         this.education = education;
         this.division = division;
-        this.user = user;
+        this.appUser = appUser;
     }
 
     public Integer getEmployeeId() {
@@ -150,12 +150,12 @@ public class EmployeeDto {
         this.division = division;
     }
 
-    public User getUser() {
-        return user;
+    public AppUser getAppUser() {
+        return appUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 
     public Integer getStatusDelete() {

@@ -1,7 +1,6 @@
 package com.codegym.ss7_c0222g1.model.customer;
 
 import com.codegym.ss7_c0222g1.model.contract.Contract;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -50,7 +49,6 @@ public class Customer {
     private Integer statusDelete = 0;
 
     @OneToMany(mappedBy = "customer")
-    @JsonBackReference("customer")
     private Set<Contract> contractList;
 
     public Customer() {

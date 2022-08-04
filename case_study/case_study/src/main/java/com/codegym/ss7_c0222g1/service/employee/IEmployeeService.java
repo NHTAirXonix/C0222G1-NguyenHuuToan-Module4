@@ -1,7 +1,7 @@
 package com.codegym.ss7_c0222g1.service.employee;
 
 import com.codegym.ss7_c0222g1.model.employee.Employee;
-import com.codegym.ss7_c0222g1.model.login.User;
+//import com.codegym.ss7_c0222g1.model.login.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

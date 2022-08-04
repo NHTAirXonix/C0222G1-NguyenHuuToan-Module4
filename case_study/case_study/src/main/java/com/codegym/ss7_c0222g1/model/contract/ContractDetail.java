@@ -14,11 +14,11 @@ public class ContractDetail {
 
     @ManyToOne
     @JoinColumn(name = "attach_service_id", columnDefinition = "INT", referencedColumnName = "attach_service_id")
+
     private AttachService attachService;
 
     @ManyToOne
     @JoinColumn(name = "contract_id", columnDefinition = "INT", referencedColumnName = "contract_id")
-    @JsonBackReference("contract")
     private Contract contract;
 
     @Column

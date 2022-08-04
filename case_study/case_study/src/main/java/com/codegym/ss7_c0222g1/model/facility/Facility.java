@@ -35,7 +35,6 @@ public class Facility {
     private FacilityType facilityType;
 
     @OneToMany(mappedBy = "facility")
-    @JsonBackReference("facility")
     private Set<Contract> contract;
 
     public Facility() {

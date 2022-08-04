@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,6 +31,16 @@ public class ContractService implements IContractService {
     @Override
     public Contract findById(Integer id) {
         return contractRepository.findById2(id);
+    }
+
+    @Override
+    public void save(Contract contract) {
+        contractRepository.save(contract);
+    }
+
+    @Override
+    public List<Contract> findAll2() {
+        return contractRepository.findAll();
     }
 
 

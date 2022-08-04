@@ -50,6 +50,7 @@ public class ServiceControllerAjax {
     public ResponseEntity<?> findEmployeeByIdToEdit(@PathVariable("id") Integer id){
         List<Facility> serviceList = serviceService.searchByName("");
         List<RentType> rentTypeList = rentTypeService.findAll();
+
         List<Object> result = new ArrayList<>();
         result.add(serviceList);
         result.add(rentTypeList);

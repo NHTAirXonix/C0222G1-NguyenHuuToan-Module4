@@ -14,16 +14,12 @@ public class CustomerType {
     @Column(name = "customer_type_name", columnDefinition = "VARCHAR(255)")
     private String customerTypeName;
 
-    @OneToMany(mappedBy = "customerType")
-    private Set<Customer> customer;
-
     public CustomerType() {
     }
 
-    public CustomerType(Integer customerTypeId, String customerTypeName, Set<Customer> customer) {
+    public CustomerType(Integer customerTypeId, String customerTypeName) {
         this.customerTypeId = customerTypeId;
         this.customerTypeName = customerTypeName;
-        this.customer = customer;
     }
 
     public Integer getCustomerTypeId() {
@@ -40,13 +36,5 @@ public class CustomerType {
 
     public void setCustomerTypeName(String customerTypeName) {
         this.customerTypeName = customerTypeName;
-    }
-
-    public Set<Customer> getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Set<Customer> customer) {
-        this.customer = customer;
     }
 }

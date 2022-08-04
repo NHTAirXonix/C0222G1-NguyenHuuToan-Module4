@@ -14,6 +14,11 @@ public class ServiceService implements IServiceService {
     private ServiceRepository serviceRepository;
 
     @Override
+    public List<Facility> findAll() {
+        return serviceRepository.findAll();
+    }
+
+    @Override
     public Facility findById(Integer id) {
         return serviceRepository.findById2(id);
     }

@@ -26,9 +26,7 @@ public class AttachService {
     @Column(name = "attach_service_status", columnDefinition = "VARCHAR(45)")
     private String attachServiceStatus;
 
-    @OneToMany(mappedBy = "attachService")
-    @JsonIgnore
-    private Set<ContractDetail> contractDetailList;
+
 
     public AttachService() {
     }
@@ -37,14 +35,12 @@ public class AttachService {
                          String attachServiceName,
                          Double attachServiceCost,
                          String attachServiceUnit,
-                         String attachServiceStatus,
-                         Set<ContractDetail> contractList) {
+                         String attachServiceStatus) {
         this.attachServiceId = attachServiceId;
         this.attachServiceName = attachServiceName;
         this.attachServiceCost = attachServiceCost;
         this.attachServiceUnit = attachServiceUnit;
         this.attachServiceStatus = attachServiceStatus;
-        this.contractDetailList = contractList;
     }
 
     public Integer getAttachServiceId() {
@@ -85,13 +81,5 @@ public class AttachService {
 
     public void setAttachServiceStatus(String attachServiceStatus) {
         this.attachServiceStatus = attachServiceStatus;
-    }
-
-    public Set<ContractDetail> getContractList() {
-        return contractDetailList;
-    }
-
-    public void setContractList(Set<ContractDetail> contractList) {
-        this.contractDetailList = contractList;
     }
 }

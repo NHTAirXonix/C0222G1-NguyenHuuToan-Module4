@@ -13,17 +13,15 @@ public class FacilityType {
     private int id;
     private String name;
 
-    @OneToMany(mappedBy = "facilityType")
-    @JsonBackReference
-    private Set<Facility> serviceSet;
+
 
     public FacilityType() {
     }
 
-    public FacilityType(int id, String name, Set<Facility> serviceSet) {
+    public FacilityType(int id, String name) {
         this.id = id;
         this.name = name;
-        this.serviceSet = serviceSet;
+
     }
 
     public int getId() {
@@ -40,13 +38,5 @@ public class FacilityType {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Set<Facility> getServiceSet() {
-        return serviceSet;
-    }
-
-    public void setServiceSet(Set<Facility> serviceSet) {
-        this.serviceSet = serviceSet;
     }
 }
